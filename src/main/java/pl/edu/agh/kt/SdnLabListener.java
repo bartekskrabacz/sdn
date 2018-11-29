@@ -80,7 +80,9 @@ public class SdnLabListener implements IOFMessageListener, IFloodlightModule {
 	public net.floodlightcontroller.core.IListener.Command receive(
 			IOFSwitch sw, OFMessage msg, FloodlightContext cntx) {
 		Logger.info("***************** New PACKET_IN *****************");
-		
+		PacketExtractor extractor = new PacketExtractor();
+		extractor.packetExtract(cntx);
+
 		return Command.CONTINUE;
 	}
 
