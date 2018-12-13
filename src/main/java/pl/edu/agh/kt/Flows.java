@@ -44,6 +44,9 @@ public class Flows {
 	protected static boolean FLOWMOD_DEFAULT_MATCH_IP_ADDR = true;
 	protected static boolean FLOWMOD_DEFAULT_MATCH_TRANSPORT = true;
 
+	public static short idleTimeout = 5;
+	public static short hardTimeout = 0;
+
 	public Flows() {
 		logger.info("Flows() begin/end");
 	}
@@ -146,5 +149,21 @@ public class Flows {
 		}
 
 		return mb.build();
+	}
+
+	public static short getHardTimeout() {
+		return hardTimeout;
+	}
+
+	public static void setHardTimeout(short hardTimeout) {
+		Flows.hardTimeout = hardTimeout;
+	}
+	
+	public static short getIdleTimeout() {
+		return idleTimeout;
+	}
+
+	public static void setIdleTimeout(short idleTimeout) {
+		Flows.idleTimeout = idleTimeout;
 	}
 }

@@ -21,10 +21,13 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.floodlightcontroller.restserver.IRestApiService;
+
 public class SdnLabListener implements IFloodlightModule, IOFMessageListener {
 
 	protected IFloodlightProviderService floodlightProvider;
 	protected static Logger logger;
+	protected IRestApiService restApiService;
 
 	@Override
 	public String getName() {
@@ -79,6 +82,8 @@ public class SdnLabListener implements IFloodlightModule, IOFMessageListener {
 	public Collection<Class<? extends IFloodlightService>> getModuleDependencies() {
 		Collection<Class<? extends IFloodlightService>> l = new ArrayList<Class<? extends IFloodlightService>>();
 		l.add(IFloodlightProviderService.class);
+
+		l.add(IRestApiService.class);
 		return l;
 	}
 
@@ -86,6 +91,8 @@ public class SdnLabListener implements IFloodlightModule, IOFMessageListener {
 	public void init(FloodlightModuleContext context) throws FloodlightModuleException {
 		floodlightProvider = context.getServiceImpl(IFloodlightProviderService.class);
 		logger = LoggerFactory.getLogger(SdnLabListener.class);
+		restApiService = context.getServiceImpl(IRestApiService.class);
+
 	}
 
 	@Override
