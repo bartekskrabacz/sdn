@@ -34,4 +34,17 @@ public class LabRestServer extends ServerResource {
 	}
 
 	private static final ObjectMapper mapper;
+
+	static {
+		mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+	}
+
+	public static String serialize(Timeout t) throws JsonProcessingException {
+			return mapper.writeValueAsString(t);
+	}
+
+	public static Timeout deserialize(String text, Class<Timeout> clazz) throws IOException {
+		return mapper.readValue(text, clazz);
+	}
 }
